@@ -1,6 +1,0 @@
-@DeskFlowAPI_HostAddress = http://localhost:5085
-
-GET {{DeskFlowAPI_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
