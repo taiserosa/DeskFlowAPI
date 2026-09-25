@@ -12,7 +12,6 @@ namespace DeskFlowAPI.Data
         }
         public DbSet<Chamado> Chamados => Set<Chamado>();
         public DbSet<Categoria> Categorias => Set<Categoria>();
-        public DbSet<Interacao> Interacoes => Set<Interacao>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -33,6 +32,14 @@ namespace DeskFlowAPI.Data
                 chamado.Property(c => c.Status).HasMaxLength(20);
                 chamado.Property(c => c.SolicitanteNome).HasMaxLength(100);
                 chamado.Property(c => c.Solucao).HasMaxLength(1000);
+            });
+
+            modelBuilder.Entity<Categoria>(categoria =>
+            {
+               categoria.ToTable("Categorias");
+
+               categoria.HasKey(ca => ca.Id);
+               categoria.Property(ca => ca.Nome).HasMaxLength(20);
             });
         }
     }
