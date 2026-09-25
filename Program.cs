@@ -1,5 +1,6 @@
 using DeskFlowAPI.ChamadoService;
 using DeskFlowAPI.Data;
+using DeskFlowAPI.Middlewares;
 using DeskFlowAPI.Repositories;
 using DeskFlowAPI.Repositories.Interfaces;
 using DeskFlowAPI.Services;
@@ -26,7 +27,7 @@ builder.Services.AddScoped<IInteracaoService, InteracaoService>();
 
 var app = builder.Build();
 
-// app.UseMiddleware<>();
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.MapOpenApi();
 
