@@ -2,6 +2,8 @@ using DeskFlowAPI.ChamadoService;
 using DeskFlowAPI.Data;
 using DeskFlowAPI.Repositories;
 using DeskFlowAPI.Repositories.Interfaces;
+using DeskFlowAPI.Services;
+using DeskFlowAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,6 +21,8 @@ builder.Services.AddIdentityApiEndpoints<IdentityUser>()
 
 builder.Services.AddScoped<IChamadoRepository, ChamadoRepository>();
 builder.Services.AddScoped<IChamadoService, ChamadoService>();
+builder.Services.AddScoped<IInteracaoRepository, InteracaoRepository>();
+builder.Services.AddScoped<IInteracaoService, InteracaoService>();
 
 var app = builder.Build();
 
