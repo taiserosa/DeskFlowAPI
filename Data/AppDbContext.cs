@@ -12,6 +12,7 @@ namespace DeskFlowAPI.Data
         }
         public DbSet<Chamado> Chamados => Set<Chamado>();
         public DbSet<Categoria> Categorias => Set<Categoria>();
+        public DbSet<Interacao> Interacoes => Set<Interacao>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

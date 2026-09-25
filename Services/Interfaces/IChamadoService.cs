@@ -8,5 +8,7 @@ namespace DeskFlowAPI.Repositories.Interfaces
         Task IniciarAtendimentoAsync(Guid id);
         Task EncerrarChamado(Guid id, string solucao);
         Task<Chamado?> ObterPorIdAsync(Guid id);
+        Task<Chamado?> ObterChamadoDetalhadoAsync(Guid id);
+        Task<List<Chamado>> ObterComFiltroAsync(string? status, string? prioridade, Guid? categoriaId);
     }
 }

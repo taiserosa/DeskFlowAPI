@@ -16,5 +16,6 @@ namespace DeskFlowAPI.Models.Entities
         public string? Solucao { get; set; }
         public Guid CategoriaId { get; set; }
         public virtual Categoria Categoria { get; set; }
+        public List<Interacao> Interacoes { get; set; } = new();
     }
 }

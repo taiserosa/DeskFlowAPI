@@ -65,5 +65,20 @@ namespace DeskFlowAPI.ChamadoService
         {
             return await _chamadoRepository.ObterPorIdAsync(id);
         }
+
+        // RF11 - Obter Detalhes Completos do Chamado
+        // Retornar as informações do chamado juntamente com a sua Categoria e a lista de Interacoes associadas.
+        public async Task<Chamado?> ObterChamadoDetalhadoAsync(Guid id)
+        {
+            return await _chamadoRepository.ObterChamadoAsync(id);
+        }
+        
+        // RF12 - Listagem com Filtros Dinâmicos
+        // Permitir a consulta de chamados com suporte a filtros combinados
+        // via query string: por Status, por Prioridade ou por CategoriaId.
+        public async Task<List<Chamado>> ObterComFiltroAsync(string? status, string? prioridade, Guid? categoriaId)
+        {
+            return await _chamadoRepository.ObterComFiltrosAsync(status, prioridade, categoriaId);
+        }
     }
 }
