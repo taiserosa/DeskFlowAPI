@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace DeskFlowAPI.Models.Entities
 {
     public class Chamado
@@ -15,7 +17,8 @@ namespace DeskFlowAPI.Models.Entities
         public DateTime? DataFechamento { get; set; } 
         public string? Solucao { get; set; }
         public Guid CategoriaId { get; set; }
-        public virtual Categoria Categoria { get; set; }
-        public List<Interacao> Interacoes { get; set; } = new();
+        public virtual Categoria? Categoria { get; set; }
+        [JsonIgnore]
+        public virtual List<Interacao> Interacoes { get; set; } = new();
     }
 }
