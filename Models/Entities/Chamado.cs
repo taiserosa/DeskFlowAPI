@@ -20,6 +20,6 @@ namespace DeskFlowAPI.Models.Entities
         public virtual Categoria? Categoria { get; set; }
         
         [System.Text.Json.Serialization.JsonIgnore]
-        public List<Interacao> Interacoes { get; set; } = new();
+        public virtual List<Interacao> Interacoes { get; set; } = new();
     }
 }

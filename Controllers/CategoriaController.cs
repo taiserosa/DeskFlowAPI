@@ -29,6 +29,7 @@ namespace DeskFlowAPI
             var categorias = await _categoriaService.ObterTodasAsync();
             return Ok(categorias);   
         }
+        
         [HttpGet]
         [Route("{id}")]
         public async Task<IActionResult> ObterPorIdAsync([FromRoute] Guid id)

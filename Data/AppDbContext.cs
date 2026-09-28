@@ -41,7 +41,7 @@ namespace DeskFlowAPI.Data
                categoria.ToTable("Categorias");
 
                categoria.HasKey(ca => ca.Id);
-               categoria.Property(ca => ca.Nome).HasMaxLength(20);
+               categoria.Property(ca => ca.Nome).HasMaxLength(100);
             });
 
             modelBuilder.Entity<Interacao>(interacao =>
