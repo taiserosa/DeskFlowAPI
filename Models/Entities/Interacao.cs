@@ -10,6 +10,8 @@ namespace DeskFlowAPI.Models.Entities
         public string Autor { get; set; } = string.Empty;
         public string Mensagem { get; set; } = string.Empty;
         public DateTime DataRegistro { get; set; }
+
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual Chamado Chamado { get; set; } = null!;
     }
 }

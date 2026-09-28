@@ -1,7 +1,7 @@
 using DeskFlowAPI.Models.Entities;
 using DeskFlowAPI.Repositories.Interfaces;
 
-namespace DeskFlowAPI
+namespace DeskFlowAPI.Services
 {
     public class CategoriaService : ICategoriaService
     {

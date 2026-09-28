@@ -15,7 +15,11 @@ namespace DeskFlowAPI.Models.Entities
         public DateTime? DataFechamento { get; set; } 
         public string? Solucao { get; set; }
         public Guid CategoriaId { get; set; }
-        public virtual Categoria Categoria { get; set; }
+
+        [System.Text.Json.Serialization.JsonIgnore]
+        public virtual Categoria? Categoria { get; set; }
+        
+        [System.Text.Json.Serialization.JsonIgnore]
         public List<Interacao> Interacoes { get; set; } = new();
     }
 }

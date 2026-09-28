@@ -1,8 +1,7 @@
 using DeskFlowAPI.Models.Entities;
 using DeskFlowAPI.Repositories.Interfaces;
-using Microsoft.IdentityModel.Tokens;
 
-namespace DeskFlowAPI.ChamadoService
+namespace DeskFlowAPI.Services
 {
     public class ChamadoService : IChamadoService {
         private IChamadoRepository _chamadoRepository;

@@ -7,6 +7,8 @@ namespace DeskFlowAPI.Models.Entities
         // mapeada no EF Core com relacionamento 1:N para a entidade Chamado.
         public Guid Id { get; set; } = Guid.NewGuid();
         public string Nome { get; set; } = string.Empty;
+
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual List<Chamado> Chamados { get; set; } = new();
     }
 }
