@@ -28,6 +28,14 @@ namespace DeskFlowAPI.Services
             {
                 throw new Exception("Não é possível atribuir uma interação à um chamado Fechado!");
             }
+            if (string.IsNullOrWhiteSpace(interacao.Autor))
+            {
+                throw new Exception("O autor da interação é obrigatório!");
+            }
+            if (string.IsNullOrWhiteSpace(interacao.Mensagem))
+            {
+                throw new Exception("A mensagem da interação não pode estar vazia!");
+            }
             interacao.ChamadoId = chamadoId;
             interacao.DataRegistro = DateTime.UtcNow;
             await _interacaoRepository.AdicionaInteracaoAsync(interacao);
