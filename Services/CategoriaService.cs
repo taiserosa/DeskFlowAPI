@@ -30,7 +30,6 @@ namespace DeskFlowAPI
 
         public async Task<Categoria> ObterPorIdAsync(Guid id)
         {
-
             var categoria =  await _categoriaRepository.ObterPorIdAsync(id);
             if(categoria == null)
             {

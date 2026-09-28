@@ -45,7 +45,7 @@ namespace DeskFlowAPI.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> ObterChamadoDetalhadoAsync([FromRoute] Guid id)
         {
-            var chamado =await _chamadoService.ObterChamadoDetalhadoAsync(id);
+            var chamado = await _chamadoService.ObterChamadoDetalhadoAsync(id);
             if (chamado == null)
             {
                 return NotFound("Chamado não encontrado!");

@@ -1,6 +1,5 @@
 using DeskFlowAPI.Models.Entities;
 using DeskFlowAPI.Repositories.Interfaces;
-using Microsoft.IdentityModel.Tokens;
 
 namespace DeskFlowAPI.ChamadoService
 {
@@ -21,7 +20,7 @@ namespace DeskFlowAPI.ChamadoService
         }
 
         // RF07 - Iniciar Atendimento
-        // Alterar o status do chamado de Aberto para EmAndamento.
+        // Alterar o status do chamado de Aberto para Em andamento.
         public async Task IniciarAtendimentoAsync(Guid id)
         {
             var chamadoDb = await _chamadoRepository.ObterPorIdAsync(id);
@@ -57,7 +56,6 @@ namespace DeskFlowAPI.ChamadoService
             chamadoDb.Status = "Fechado";
             chamadoDb.DataFechamento = DateTime.UtcNow;
             chamadoDb.Solucao = solucao;
-
             await _chamadoRepository.AtualizarChamadoAsync(chamadoDb);
         }
 
