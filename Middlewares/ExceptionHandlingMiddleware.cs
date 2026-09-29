@@ -28,15 +28,16 @@ namespace DeskFlowAPI.Middlewares
         {
             context.Response.ContentType = "application/json";
 
-            context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+            var statusCode = exception.Message.Contains("não encontrado", StringComparison.OrdinalIgnoreCase) ? HttpStatusCode.NotFound : HttpStatusCode.BadRequest;
+
+            context.Response.StatusCode = (int)statusCode;
 
             var response = new
             {
-                status = context.Response.StatusCode,
+                status = (int)statusCode,
                 mensagem = exception.Message,
                 data = DateTime.UtcNow
             };
-
             var jsonResponse = JsonSerializer.Serialize(response);
             return context.Response.WriteAsync(jsonResponse);
         }

@@ -1,9 +1,9 @@
-using DeskFlowAPI.Models.Entities;
+using DeskFlowAPI.DTOs;
 using DeskFlowAPI.Repositories.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DeskFlowAPI
+namespace DeskFlowAPI. Controllers
 {
     [Authorize]
     [ApiController]
@@ -18,10 +18,10 @@ namespace DeskFlowAPI
 
         // RF02 - Cadastrar Categoria (POST /api/categorias)
         [HttpPost]
-        public async Task<IActionResult> InserirCategoriaAsync([FromBody] Categoria categoria)
+        public async Task<IActionResult> InserirCategoriaAsync([FromBody] CriarCategoriaDto categoriaDto)
         {
-            await _categoriaService.InserirCategoriaAsync(categoria);
-            return Created();
+            var categoriaCriada = await _categoriaService.InserirCategoriaAsync(categoriaDto);
+            return Created(string.Empty, categoriaCriada);
         }
 
         // RF03 - Listar e Buscar Categorias (todas e por id) (GET /api/categorias)
@@ -43,9 +43,9 @@ namespace DeskFlowAPI
         // RF04 - Atualizar e Deletar Categoria (PUT / DELETE)
         [HttpPut]
         [Route("{id}")]
-        public async Task<IActionResult> Atualizar([FromRoute] Guid id, [FromBody] Categoria categoria)
+        public async Task<IActionResult> Atualizar([FromRoute] Guid id, [FromBody] CriarCategoriaDto categoriaDto)
         {
-            await _categoriaService.AtualizarCategoriaAsync(id, categoria);
+            await _categoriaService.AtualizarCategoriaAsync(id, categoriaDto);
             return NoContent();
         }
 

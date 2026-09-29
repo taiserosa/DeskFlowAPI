@@ -1,7 +1,8 @@
-namespace DeskFlowAPI.DTOs;
-
-public class CriarInteracaoDto
+namespace DeskFlowAPI.DTOs
 {
-    public string Autor { get; set; } = string.Empty;
-    public string Mensagem { get; set; } = string.Empty;
+    public class CriarInteracaoDto
+    {
+        public string Autor { get; set; } = string.Empty;
+        public string Mensagem { get; set; } = string.Empty;
+    }    
 }

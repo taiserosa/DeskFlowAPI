@@ -1,3 +1,4 @@
+using DeskFlowAPI.DTOs;
 using DeskFlowAPI.Models.Entities;
 using DeskFlowAPI.Repositories.Interfaces;
 
@@ -12,13 +13,19 @@ namespace DeskFlowAPI.Services
         }
         // RF02 - Cadastrar Categoria
         // Permitir a inserção de uma nova categoria de TI no banco de dados
-        public async Task InserirCategoriaAsync(Categoria categoria)
+        public async Task<Categoria> InserirCategoriaAsync(CriarCategoriaDto categoriaDto)
         {
-            if (string.IsNullOrWhiteSpace(categoria.Nome))
+            if (string.IsNullOrWhiteSpace(categoriaDto.Nome))
             {
                 throw new Exception("O nome da categoria é obrigatório!");
             }
-            await _categoriaRepository.InserirCategoriaAsync(categoria);
+
+            var novaCategoria = new Categoria
+            {
+                Nome = categoriaDto.Nome
+            };
+            await _categoriaRepository.InserirCategoriaAsync(novaCategoria);
+            return novaCategoria;
         }
 
         // RF03 - Listar e Buscar Categorias
@@ -41,14 +48,14 @@ namespace DeskFlowAPI.Services
         // RF04 - Atualizar e Deletar Categoria
         // Permitir a alteração do nome e a remoção de uma categoria 
         // (validando se ela possui chamados associados antes de deletar).
-        public async Task AtualizarCategoriaAsync(Guid id, Categoria categoria)
+        public async Task AtualizarCategoriaAsync(Guid id, CriarCategoriaDto categoriaDto)
         {
             var categoriaDb = await _categoriaRepository.ObterPorIdAsync(id);
             if (categoriaDb == null)
             {
                 throw new Exception("Categoria não encontrada!");
             }
-            categoriaDb.Nome = categoria.Nome;
+            categoriaDb.Nome = categoriaDto.Nome;
             await _categoriaRepository.AtualizarCategoriaAsync(categoriaDb);
         }
 

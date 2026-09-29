@@ -15,10 +15,10 @@ namespace DeskFlowAPI.Services
         // O sistema deve atribuir automaticamente o status Aberto e a DataAbertura com a data/hora atual.
         public async Task<Chamado> AbrirChamadoAsync(CriarChamadoDto chamadoDto)
         {
-            List<string> prioridadesValidas = new List<string> {"Baixa", "Média", "Alta"};
+            List<string> prioridadesValidas = new List<string> {"Baixa", "Media", "Média", "Alta"};
             if(!prioridadesValidas.Contains(chamadoDto.Prioridade, StringComparer.OrdinalIgnoreCase))
             {
-                throw new Exception("A prioridade deve ser apenas 'Baixa', 'Média' ou 'Alta'");
+                throw new Exception("A prioridade deve ser apenas 'Baixa', 'Media' ou 'Alta'");
             }
             var novoChamado = new Chamado
             {
