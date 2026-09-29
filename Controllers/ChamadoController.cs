@@ -1,9 +1,11 @@
-using DeskFlowAPI.Models.Entities;
+using DeskFlowAPI.DTOs;
 using DeskFlowAPI.Repositories.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DeskFlowAPI.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/chamados")]
     public class ChamadoController : ControllerBase
@@ -17,10 +19,10 @@ namespace DeskFlowAPI.Controllers
         // RF06 - Abrir Novo Chamado (POST /api/chamados)
         // Endpoint para registrar um chamado.
         [HttpPost]
-        public async Task<IActionResult> CriarChamadoAsync([FromBody] Chamado chamado) 
+        public async Task<IActionResult> CriarChamadoAsync([FromBody] CriarChamadoDto chamadoDto) 
         {
-            await _chamadoService.AbrirChamadoAsync(chamado);
-            return Created(string.Empty, chamado);
+            var chamadoCriado = await _chamadoService.AbrirChamadoAsync(chamadoDto);
+            return Created(string.Empty, chamadoCriado);
         }
 
         // RF07 - Iniciar Atendimento (POST /api/chamados/{id}/iniciar)
@@ -35,7 +37,7 @@ namespace DeskFlowAPI.Controllers
         // RF08 - Encerrar Chamado (POST /api/chamados/{id}/encerrar)
         // Endpoint para fechar o chamado.
         [HttpPost("{id}/encerrar")]
-        public async Task<IActionResult> EncerrarAtendimentoAsync([FromRoute] Guid id, [FromBody] string solucao)
+        public async Task<IActionResult> EncerrarAtendimentoAsync([FromRoute] Guid id, [FromQuery] string solucao)
         {
             await _chamadoService.EncerrarChamado(id, solucao);
             return NoContent();

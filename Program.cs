@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using DeskFlowAPI.Data;
 using DeskFlowAPI.Middlewares;
 using DeskFlowAPI.Repositories;
@@ -10,7 +11,11 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    });
 
 string connection = builder.Configuration.GetConnectionString("DefaultConnection");
 
@@ -39,6 +44,10 @@ app.UseSwaggerUI(c =>
 });
 
 app.UseHttpsRedirection();
+
+app.UseAuthorization();
+
+app.MapGroup("/api/auth").MapIdentityApi<IdentityUser>();
 
 app.MapControllers();
 

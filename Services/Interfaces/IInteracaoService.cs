@@ -1,3 +1,4 @@
+using DeskFlowAPI.DTOs;
 using DeskFlowAPI.Models.Entities;
 
 namespace DeskFlowAPI.Services.Interfaces
@@ -7,6 +8,6 @@ namespace DeskFlowAPI.Services.Interfaces
     // (apenas se o chamado não estiver no status Fechado).
     public interface IInteracaoService
     {
-        Task AdicionarInteracaoChamadoAsync(Interacao interacao, Guid chamadoId);
+        Task<Interacao> AdicionarInteracaoChamadoAsync(CriarInteracaoDto interacaoDto, Guid chamadoId);
     }
 }

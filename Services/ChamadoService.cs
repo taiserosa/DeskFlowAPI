@@ -1,3 +1,4 @@
+using DeskFlowAPI.DTOs;
 using DeskFlowAPI.Models.Entities;
 using DeskFlowAPI.Repositories.Interfaces;
 
@@ -12,11 +13,26 @@ namespace DeskFlowAPI.Services
 
         // RF06 - Abrir Novo Chamado 
         // O sistema deve atribuir automaticamente o status Aberto e a DataAbertura com a data/hora atual.
-        public async Task AbrirChamadoAsync(Chamado chamado)
+        public async Task<Chamado> AbrirChamadoAsync(CriarChamadoDto chamadoDto)
         {
-            chamado.Status = "Aberto";
-            chamado.DataAbertura = DateTime.UtcNow;
-            await _chamadoRepository.CriarChamadoAsync(chamado);
+            List<string> prioridadesValidas = new List<string> {"Baixa", "Média", "Alta"};
+            if(!prioridadesValidas.Contains(chamadoDto.Prioridade, StringComparer.OrdinalIgnoreCase))
+            {
+                throw new Exception("A prioridade deve ser apenas 'Baixa', 'Média' ou 'Alta'");
+            }
+            var novoChamado = new Chamado
+            {
+                Id = Guid.NewGuid(),
+                Titulo = chamadoDto.Titulo,
+                Descricao = chamadoDto.Descricao,
+                Prioridade = chamadoDto.Prioridade,
+                SolicitanteNome = chamadoDto.SolicitanteNome,
+                CategoriaId = chamadoDto.CategoriaId,
+                Status = "Aberto",
+                DataAbertura = DateTime.UtcNow
+            };
+            await _chamadoRepository.CriarChamadoAsync(novoChamado);
+            return novoChamado;
         }
 
         // RF07 - Iniciar Atendimento
