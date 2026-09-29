@@ -20,6 +20,11 @@ A aplicação foi desenvolvida seguindo a arquitetura em camadas **Controller ->
 
 ---
 
+## 📁 Estrutura do Projeto
+
+![Estrutura de Pastas do Projeto](./img/arquitetura_camadas.png)
+---
+
 ## 🧠 Ciclo de Vida do Chamado
 O fluxo do atendimento é controlado estritamente pela camada de serviço:
 
@@ -69,36 +74,42 @@ O fluxo do atendimento é controlado estritamente pela camada de serviço:
 
 1. **Clonar o repositório:**
    ```bash
-   git clone [https://github.com/seu-usuario/deskflow-api.git](https://github.com/seu-usuario/deskflow-api.git)
-   cd deskflow-api
+   git clone https://github.com/taiserosa/DeskFlowAPI
+   cd DeskFlowAPI
+   ```
 
 2. **Configurar a Connection String:**
    Abra o arquivo `appsettings.json` na raiz do projeto e ajuste a chave `DefaultConnection` com as credenciais do seu servidor SQL Server:
-   
-   "ConnectionStrings": {
+   ```json
+   "ConnectionStrings": 
+   {
      "DefaultConnection": "Server=localhost;Database=DeskFlowDb;Trusted_Connection=True;TrustServerCertificate=True;"
    }
+   ```
 
 3. **Criação do Banco de Dados:**
    Você pode criar o banco de duas formas:
 
    - **Opção A (Via EF Core Migrations):**
+   ```bash
      dotnet ef database update
-
+   ```
    - **Opção B (Via Script SQL disponível no repositório):**
      Execute o arquivo `script-banco.sql` diretamente no seu SGBD (SQL Server Management Studio ou Azure Data Studio).
 
 4. **Executar a API:**
+   ```bash
    dotnet run
+   ```
 
 5. **Acessar a documentação no Swagger:**
    Abra o navegador e acesse a URL da aplicação para utilizar as rotas:
-   https://localhost:7000/swagger
+   https://localhost:5085/swagger
 
 ---
 
 ## 🎥 Vídeo de Apresentação
-[Vídeo de apresentação da DeskFlow API](https://link-do-seu-video.com)
+[Vídeo de apresentação da DeskFlow API](https://drive.google.com/file/d/1SNYfguirWGs8Up4VvHx8RrffqjVVJ4EE/view?usp=sharing)
 
 ---
 
