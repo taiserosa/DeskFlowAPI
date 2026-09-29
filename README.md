@@ -92,7 +92,7 @@ O fluxo do atendimento é controlado estritamente pela camada de serviço:
 
    - **Opção A (Via EF Core Migrations):**
    ```bash
-     dotnet ef database update
+   dotnet ef database update
    ```
    - **Opção B (Via Script SQL disponível no repositório):**
      Execute o arquivo `script-banco.sql` diretamente no seu SGBD (SQL Server Management Studio ou Azure Data Studio).
